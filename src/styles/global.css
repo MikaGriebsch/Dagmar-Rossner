@@ -179,3 +179,13 @@ hr {
 	opacity: 0; 
 	animation: slideInFromRight 1.5s forwards;
 }
+
+.menu-open-blur > *:not(header) {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+}
+
+.menu-open-blur > header {
+    /* Stellt sicher, dass der Header nicht geblurrt wird */
+    filter: none !important;
+}

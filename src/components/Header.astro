@@ -1,5 +1,5 @@
----
 import HeaderLink from './HeaderLink.astro';
+---
 import { SITE_TITLE } from '../consts';
 ---
 
@@ -130,6 +130,8 @@ header {
     background: white;
     font-weight: 200;
     font-size: 2vh;
+    position: relative; /* Hinzugefügt */
+    z-index: 1000;      /* Hinzugefügt für Layering über geblurrtem Inhalt */
 }
 
 nav {
@@ -298,9 +300,28 @@ nav a:hover::before {
     document.addEventListener('DOMContentLoaded', () => {
         const hamburger = document.querySelector('.hamburger');
         const mobileMenu = document.querySelector('.mobile-menu');
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            hamburger.classList.toggle('open');
+
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                mobileMenu.classList.toggle('active');
+                // Toggle blur class on body
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.classList.add('menu-open-blur');
+                } else {
+                    document.body.classList.remove('menu-open-blur');
+                }
+            });
+        }
+
+        // Logic for active links
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
+
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
         });
     });
 </script>
