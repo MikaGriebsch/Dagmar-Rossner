@@ -13,7 +13,7 @@ heroImage: '/laser.webp'
         </p>
     </div>
     <div class="video">
-        <video controls>
+        <video controls poster="/VideoBackgrund.jpeg">
             <source src="/Video/Laser.mp4" type="video/mp4">
             Dein Browser unterstützt dieses Video-Format nicht.
         </video>

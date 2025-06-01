@@ -57,7 +57,7 @@ Bei der Behandlung der Inkontinenz wird fokussierte Energie verwendet, um den Be
         </ul>
     </div>
     <div class="video">
-        <video controls>
+        <video controls poster="/VideoBackgrund.jpeg">
             <source src="/Video/Emsella.mp4" type="video/mp4">
             Dein Browser unterstützt dieses Video-Format nicht.
         </video>

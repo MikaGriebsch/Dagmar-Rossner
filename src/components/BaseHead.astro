@@ -49,3 +49,126 @@ const { title, description, image = '/blog-placeholder-1.AVIF' } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('video').forEach(video => {
+      const parent = video.parentNode;
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+      // Preserve original display style of the video element for the wrapper
+      const videoDisplayStyle = window.getComputedStyle(video).display;
+      wrapper.style.display = videoDisplayStyle === 'inline' ? 'inline-block' : videoDisplayStyle;
+      // Ensure wrapper takes up the same space as the video
+      wrapper.style.width = video.style.width || (video.hasAttribute('width') ? video.getAttribute('width') + 'px' : 'auto');
+      wrapper.style.height = video.style.height || (video.hasAttribute('height') ? video.getAttribute('height') + 'px' : 'auto');
+
+
+      // Move video into wrapper
+      if (parent) {
+        parent.insertBefore(wrapper, video);
+      }
+      wrapper.appendChild(video);
+
+      const playButtonOverlay = document.createElement('div');
+	  playButtonOverlay.innerHTML = '<span style="margin-left:6px;">&#9658;</span>';
+      playButtonOverlay.setAttribute('style', `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: clamp(24px, 3vw, 40px); /* Adjusted triangle size */
+        color: white;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 50%; /* Makes it a circle */
+        width: clamp(50px, 7vw, 80px); /* Explicit width for the circle */
+        height: clamp(50px, 7vw, 80px); /* Explicit height for the circle */
+        padding: 0; /* Padding is removed as width/height define size */
+        cursor: pointer;
+        z-index: 1;
+        display: flex; /* Use flex to center the play icon */
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 12px rgba(0,0,0,0.5);
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      `); /* Ensure the backtick is here */
+      playButtonOverlay.onmouseover = () => { 
+        playButtonOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        playButtonOverlay.style.transform = 'translate(-50%, -50%) scale(1.1)';
+      };
+      playButtonOverlay.onmouseout = () => { 
+        playButtonOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        playButtonOverlay.style.transform = 'translate(-50%, -50%) scale(1)';
+      };
+
+      wrapper.appendChild(playButtonOverlay);
+
+      const showCustomPlayButton = () => {
+        // Show custom play button only if there's a poster and video is paused at the start
+        if (video.paused && video.hasAttribute('poster') && video.currentTime === 0) {
+          playButtonOverlay.style.display = 'flex';
+          video.controls = false; // Hide native controls when custom button is shown
+        } else {
+          playButtonOverlay.style.display = 'none';
+          if (!video.paused || video.currentTime > 0) { // if playing or paused mid-way
+            video.controls = true; // Ensure native controls are visible
+          }
+        }
+      };
+
+      const startPlayback = () => {
+        playButtonOverlay.style.display = 'none';
+        video.controls = true;
+        video.play().catch(error => {
+          console.error("Video play failed:", error);
+          // Fallback or error message if needed
+        });
+      };
+
+      // Initial state check
+      showCustomPlayButton();
+
+      playButtonOverlay.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent click from bubbling to wrapper
+        startPlayback();
+      });
+
+      // Clicking anywhere on the wrapper (including poster) should start the video
+      // if the custom play button was visible (i.e., video was at start with poster)
+      wrapper.addEventListener('click', (e) => {
+        // Ensure the click is not on the video element itself if controls are visible and it's playing/paused mid-way
+        if (e.target !== video && video.paused && video.currentTime === 0 && video.hasAttribute('poster')) {
+          startPlayback();
+        } else if (e.target === video && video.paused && video.currentTime === 0 && video.hasAttribute('poster')) {
+          // If click is directly on video element (poster) and it's at the start
+          startPlayback();
+        }
+      });
+
+      video.addEventListener('play', () => {
+        playButtonOverlay.style.display = 'none';
+        video.controls = true;
+      });
+
+      video.addEventListener('pause', () => {
+        // If paused at the very beginning with a poster, show custom button
+        if (video.currentTime === 0 && video.hasAttribute('poster')) {
+          showCustomPlayButton();
+        } else {
+        // Otherwise, native controls are active, so no need for custom button
+          playButtonOverlay.style.display = 'none';
+          video.controls = true;
+        }
+      });
+
+      video.addEventListener('ended', () => {
+        // When video ends, show poster and custom play button again
+        if (video.hasAttribute('poster')) {
+          video.load(); // Resets to poster frame
+          showCustomPlayButton();
+        }
+      });
+    });
+  });
+</script>
+</head>

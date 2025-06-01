@@ -10,7 +10,9 @@ import { SITE_TITLE } from '../consts';
             <HeaderLink href="/about">ÜBER MICH</HeaderLink>
         </div>
         <div class="logo">
-            <img alt="Logo" src="/LogoDR.jpg" style="width:70px" >
+            <a class="logo-link" href="/">
+                <img alt="Logo" src="/LogoDR.jpg" style="width:70px" >
+            </a>
         </div>
         <div class="internal-links links-right">
             <HeaderLink href="/blog">ANGEBOT</HeaderLink>
@@ -292,6 +294,10 @@ nav a:hover::before {
 .mobile-menu.active {
     display: flex;
     animation: slideDown 0.5s ease forwards;
+}
+
+.logo-link::before {
+    transform: scaleX(0) !important; 
 }
 
 </style>
