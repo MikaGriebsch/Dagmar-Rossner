@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import emsellaImage from '../assets/images/EmsellaStuhlNah.JPG';
+---
+
 <div class="container">
     <div class="left">
         <p class="header-serif">Inkontinenz - Emsella</p>
@@ -15,7 +20,7 @@
         </div>
     </div>
     <div class="right-emsella">
-        <img alt="Bild Emsella" src="/EmsellaStuhlNah.JPG" alt="Emsella">
+        <Image alt="Emsella Stuhl" src={emsellaImage} width={500} height={650} />
     </div>
 </div>
 

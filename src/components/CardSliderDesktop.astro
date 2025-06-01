@@ -1,32 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import wellnessIcon from '../assets/images/wellness-02.svg';
+import educationIcon from '../assets/images/education-02.svg';
+import commitmentIcon from '../assets/images/commitment-02.svg';
+---
+
 <div class="outer-container">
     <div class="container">
         <div class="card">
             <h2>01</h2>
-            <p><img alt="Icon" src="/wellness-02.svg" alt="Heart Icon"></p>
+            <p><Image alt="Heart Icon" src={wellnessIcon} width={100} height={100} /></p>
             <h3>Gynäkologische Vorsorge</h3>
             <a href="/blog/gyn">Mehr erfahren</a>
         </div>
         <div class="card">
             <h2>02</h2>
-            <p><img alt="Icon" src="/education-02.svg" alt="Drop Icon"></p>
+            <p><Image alt="Drop Icon" src={educationIcon} width={100} height={100} /></p>
             <h3>Schwangerschaftsvorsorge</h3>
             <a href="/blog/schwangerschaft">Mehr erfahren</a>
         </div>
         <div class="card">
             <h2>03</h2>
-            <p><img alt="Icon" src="/commitment-02.svg" alt="Bulb Icon"></p>
+            <p><Image alt="Bulb Icon" src={commitmentIcon} width={100} height={100} /></p>
             <h3>Krebsnachsorge</h3>
             <a href="/blog/krebsnachsorge">Mehr erfahren</a>
         </div>
         <div class="card">
             <h2>04</h2>
-            <p><img alt="Icon" src="/wellness-02.svg" alt="Bulb Icon"></p>
+            <p><Image alt="Bulb Icon" src={wellnessIcon} width={100} height={100} /></p>
             <h3>Ultraschalluntersuchung</h3>
             <a href="/blog/ultraschall">Mehr erfahren</a>
         </div>
         <div class="card">
             <h2>05</h2>
-            <p><img alt="Icon" src="/wellness-02.svg" alt="Bulb Icon"></p>
+            <p><Image alt="Bulb Icon" src={wellnessIcon} width={100} height={100} /></p>
             <h3>Brustuntersuchung</h3>
             <a href="/blog/brustuntersuchung">Mehr erfahren</a>
         </div>

@@ -1,6 +1,11 @@
+---
+import { Image } from 'astro:assets';
+import teamImage from '../assets/images/Team.AVIF';
+---
+
 <div class="container">
     <div class="left">
-        <img alt="Team-Bild" src="/Team.AVIF" class="bottom-image">
+        <Image alt="Team-Bild" src={teamImage} width={800} height={600} class="bottom-image" />
     </div>
     <div class="right">
         <div class="zeiten">

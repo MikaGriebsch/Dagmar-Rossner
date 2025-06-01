@@ -1,6 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/LogoDR.jpg';
+import portraitImage from '../assets/images/AboutDagmar.JPG';
+---
+
 <div class="container">
     <div class="upper-section">
-        <img alt="logo" class="logo" src="/LogoDR.jpg">
+        <Image alt="logo" class="logo" src={logoImage} width={120} height={120} />
         <p class="header-serif">Dagmar Roßner - Die Praxis für Frauen</p>
         <div class="header-serif-mobile">
             <p class="header-serif-mobile">Dagmar Roßner</p>
@@ -17,7 +23,7 @@
 
     <div class="lower-section">
         <div class="left">
-            <img alt="Bild Dagmar Roßner" class="portrait" src="/AboutDagmar.JPG">
+            <Image alt="Bild Dagmar Roßner" class="portrait" src={portraitImage} width={500} height={650} />
         </div>
         <div class="right">
             <p class="header-serif">Das bin ich</p>

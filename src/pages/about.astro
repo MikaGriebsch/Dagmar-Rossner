@@ -1,12 +1,15 @@
 ---
 import Layout from '../layouts/BlogPost.astro';
+import { Image } from 'astro:assets';
+import portraitImage from '../assets/images/PortraitDagmar.JPG';
+import aboutDagmarImage from '../assets/images/AboutDagmar.JPG';
 ---
 
 <Layout
 	title="Über mich"
 	description="Lorem ipsum dolor sit amet"
 	pubDate={new Date('August 08 2021')}
-	heroImage="/AboutDagmar.JPG"
+	heroImage={aboutDagmarImage}
 >
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -28,7 +31,7 @@ import Layout from '../layouts/BlogPost.astro';
 			massa massa ultricies mi.
 	</p>
 	<div class="portriat">
-		<img class="portrait-img" alt="Bild" src="/PortraitDagmar.JPG">
+		<Image class="portrait-img" alt="Bild" src={portraitImage} width={500} height={650} />
 	</div>
 	<p>
 		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl

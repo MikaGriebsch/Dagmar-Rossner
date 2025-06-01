@@ -1,6 +1,8 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/LogoDR.jpg';
 ---
 
 <header>
@@ -11,7 +13,7 @@ import { SITE_TITLE } from '../consts';
         </div>
         <div class="logo">
             <a class="logo-link" href="/">
-                <img alt="Logo" src="/LogoDR.jpg" style="width:70px" >
+                <Image alt="Logo" src={logoImage} width={70} height={70} />
             </a>
         </div>
         <div class="internal-links links-right">

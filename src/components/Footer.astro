@@ -1,9 +1,14 @@
 
+---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/LogoDR.jpg';
+---
+
 <footer>
     <div class="footer-content">
         <div class="footer-line left"></div><br>
         <div class="footer-line short left" style="top: calc(50% + 5px);"></div>
-        <img src="/LogoDR.jpg" alt="Logo">
+        <Image src={logoImage} alt="Logo" width={70} height={70} />
         <div class="footer-line short right" style="top: calc(50% + 5px);"></div>
         <div class="footer-line right"></div>
     </div>

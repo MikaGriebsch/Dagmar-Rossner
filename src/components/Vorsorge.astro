@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import vorsorgeImage from '../assets/images/VorsorgeLanding4.JPG';
+---
+
 <div class="container">
     <div class="left">
         <div class="text-background">
@@ -17,7 +22,7 @@
         </div>
     </div>
     <div class="right">
-        <img class="vorsorgeImg" alt="Bild Vorsorge" src="/VorsorgeLanding4.JPG">
+        <Image class="vorsorgeImg" alt="Bild Vorsorge" src={vorsorgeImage} width={600} height={800} />
     </div>
 </div>
 

@@ -1,5 +1,10 @@
+---
+import { Image } from 'astro:assets';
+import bannerImage from '../assets/images/banner.AVIF';
+---
+
 <div class="container">
-    <img alt="BannerHeader"  class="banner" src="/banner.AVIF">
+    <Image alt="BannerHeader" class="banner" src={bannerImage} width={1920} height={600} />
     <div class="text-overlay">
         <span class="smal-text">Dr. Dagmar Roßner</span><br>
         <span class="huge-text">...für das Wohl der Frau</span>
