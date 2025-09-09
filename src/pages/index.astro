@@ -12,6 +12,7 @@ import SliderDesktop from '../components/CardSliderDesktop.astro';
 import Emsella from '../components/Emsella.astro';
 import Emsella2 from '../components/Emsella2.astro';
 import Oeffnungszeiten from '../components/oeffnungszeiten.astro';
+import DevelopmentNotice from '../components/DevelopmentNotice.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import Map from '../components/Map.astro';
 ---
@@ -22,6 +23,7 @@ import Map from '../components/Map.astro';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
+		<DevelopmentNotice />
 		<Header />
 		<Banner />
 		<AboutMe />
